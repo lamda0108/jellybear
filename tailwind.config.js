@@ -40,6 +40,9 @@ module.exports = {
       height: {
         mainHeight: 'calc(100vh - 7rem)' ,
       },
+      minHeight: {
+        '3/4screen': '75vh'
+      },
       width: {
         fortyScreen: '40vw',
         seventyScreen: '70vw'

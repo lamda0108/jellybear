@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Order;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
+
 class CartController extends Controller
 {
     public function addToCart(Product $product){
@@ -56,5 +59,44 @@ class CartController extends Controller
             session()->put('jellybearCart', $cart);
         }
         return redirect()->back();
+    }
+
+    public function checkoutCart($amount){
+        if(session()->has('jellybearCart')){
+            $cart = new Cart(session()->get('jellybearCart'));
+        }else{
+            $cart = null;
+        }
+        return view('pages.checkoutPage')->with([
+            'amount'=>$amount,
+            'cart'=>$cart
+        ]);
+    }
+
+    // submit the payment
+    public function charge(Request $request){
+        $charge = Stripe::charges()->create([
+            'currency'=>'USD',
+            'source'=>$request->stripeToken,
+            'amount'=>$request->amount,
+            'description'=>'test'
+        ]);
+        $chargeId = $charge['id'];
+        if($chargeId){
+           Order::create([
+                'name'=>$request->name,
+                'address'=>$request->address,
+                'city'=>$request->city,
+                'state'=>$request->state,
+                'zipcode'=>$request->zipcode,
+                'phone_number'=>$request->phone_number,
+               'cart'=>serialize(session()->get('jellybearCart'))
+           ]); 
+           session()->forget('jellybearCart');
+
+           return redirect()->to('/');
+        }else{
+            return redirect()->back();
+        }
     }
 }

@@ -27,6 +27,10 @@ Route::get('/cart/add/{product}', [App\Http\Controllers\CartController::class, '
 Route::get('/cart/minus/{product}', [App\Http\Controllers\CartController::class, 'minusCart'])->name('cart.minus');
 // remove an item from the cart
 Route::get('/cart/remove/{product}', [App\Http\Controllers\CartController::class, 'removeCart'])->name('cart.remove');
+// cart checkout
+Route::get('/checkout/{amount}', [App\Http\Controllers\CartController::class, 'checkoutCart'])->name('cart.checkout');
+// submit the payment
+Route::post('/charge', [App\Http\Controllers\CartController::class, 'charge'])->name('cart.charge');
 // category url
 Route::get('/{slug}',[App\Http\Controllers\CategoryController::class, 'show'] )->name('category.show');
 // store a review
