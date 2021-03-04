@@ -43,37 +43,26 @@ class ProductController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product)
-    {
-        //
+    public function searchProducts(Request $request){
+
+        $request->validate([
+            'search' => 'required|min:2'
+        ]);
+
+        $products = Product::where('slug', 'like', '%' . $request->search . '%')->get();
+        if(count($products)){
+            return view('pages.searchResultPage')->with([
+                'products'=>$products
+            ]);
+        }else{
+            return view('pages.searchResultPage')->with([
+                'products'=>null,
+            ]);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Product $product)
-    {
-        //
-    }
+   
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Product $product)
-    {
-        //
-    }
+
+
 }

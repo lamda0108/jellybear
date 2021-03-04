@@ -26,15 +26,21 @@
                 <div class="w-full h-1/2 bg-pink-light flex justify-between items-center">
                     <div class="w-16 pl-5 py-1 flex items-center">
                         <img class="w-full" src="{{asset('images/bear-logo.png')}}" alt="">
-                        <h3 class="hidden md:block md:text-yellow-default md:text-lg md:tracking-wider">JellyBear</h3>
+                        <button type="submit">
+                            <h3 class="hidden md:block md:text-yellow-default md:text-lg md:tracking-wider">JellyBear</h3>
+                        </button>     
                     </div>
                     <div>
-                        <form action="" method="POST">
+                        <!-- search product -->
+                        <form action="{{route('product.search')}}" method="get">
                             <div class="relative text-gray-600 focus-within:text-gray-400">
-                                <input type="text" name="query" id="query" class="bg-white px-5 py-1 rounded" placeholder="Search">   
-                                <span class="absolute inset-y-0 right-0 flex items-center pr-3"><i class="fas fa-search"></i></span>
+                                <input type="text" name="search" id="search" value="{{ request()->input('search') }}" class="bg-white px-5 py-1 rounded outline-none" placeholder="Search">
+                                <button type="submit">
+                                    <span class="absolute inset-y-0 right-0 flex items-center pr-3"><i class="fas fa-search"></i></span>
+                                </button>
                             </div>
                         </form>
+                        <!-- end of search product -->
                     </div>
                     <div class="flex items-center px-3">
                         <span class="text-2xl"><i class="fas fa-user"></i></span>

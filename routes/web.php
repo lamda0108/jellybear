@@ -19,6 +19,8 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\LandingPageController::class, 'index'])->name('landingPage');
 // product url
 Route::get('/product/{slug}',[App\Http\Controllers\ProductController::class, 'show'] )->name('product.show');
+// search products
+Route::get('/search',[App\Http\Controllers\ProductController::class, 'searchProducts'] )->name('product.search');
 //cart page
 Route::get('/cartPage', [App\Http\Controllers\CartController::class, 'showCart'])->name('cart.show');
 // cart update add quantity
