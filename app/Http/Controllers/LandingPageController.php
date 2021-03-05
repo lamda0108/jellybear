@@ -7,6 +7,10 @@ use App\Models\Product;
 
 class LandingPageController extends Controller
 {
+    public function __construct(){
+        $this->middleware('preventBackHistory');
+    }
+
     public function index()
     {
         $animals = Product::where('category_id', '1')->get();

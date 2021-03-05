@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class ProductReviewController extends Controller
 {
+    public function __construct(){
+        $this->middleware('preventBackHistory');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +47,7 @@ class ProductReviewController extends Controller
         ]);
 
         ProductReview::create($request->all());
-        return redirect()->back()->with('success', 'Your review has been submitted'); 
+        return redirect()->back()->with('success', 'Your review has been submitted.'); 
     }
 
     /**

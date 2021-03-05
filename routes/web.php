@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
+//logout
+Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
 Route::get('/', [App\Http\Controllers\LandingPageController::class, 'index'])->name('landingPage');
 // product url

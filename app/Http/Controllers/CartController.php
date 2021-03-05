@@ -10,6 +10,11 @@ use Cartalyst\Stripe\Laravel\Facades\Stripe;
 
 class CartController extends Controller
 {
+    public function __construct(){
+        // force the go back button to reload the page
+        $this->middleware('preventBackHistory');
+    }
+
     public function addToCart(Product $product){
         if(session()->has('jellybearCart')){
             $cart = new Cart(session()->get('jellybearCart'));
@@ -18,6 +23,7 @@ class CartController extends Controller
         }
         $cart->add($product);
         session()->put('jellybearCart', $cart);
+        session()->flash('success', 'Your item has been added to the cart');
         return redirect()->back();
     }
 
@@ -94,7 +100,9 @@ class CartController extends Controller
            ]); 
            session()->forget('jellybearCart');
 
-           return redirect()->to('/');
+           return redirect()->to('/')->with([
+               'success' => 'You have already checked out'
+           ]);
         }else{
             return redirect()->back();
         }

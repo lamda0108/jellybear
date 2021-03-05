@@ -2,6 +2,8 @@
 
 @section('content')
 
+@include('layouts._message')
+
 <div class="w-full h-auto pb-24 bg-yellow-light flex flex-col justify-center">
 
     @if($products)

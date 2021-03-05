@@ -2,6 +2,7 @@
 
 @section('content')
 
+@include('layouts._message')
 @include('layouts._reviewForm', ['product_id' => $product->id])
 
 <div class="bg-yellow-light w-full h-auto flex flex-col justify-center">

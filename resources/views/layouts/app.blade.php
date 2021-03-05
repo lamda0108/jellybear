@@ -21,7 +21,7 @@
     <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
+     <div id="app">
             <nav class="w-full h-28">
                 <div class="w-full h-1/2 bg-pink-light flex justify-between items-center">
                     <div class="w-16 pl-5 py-1 flex items-center">
@@ -43,11 +43,22 @@
                         <!-- end of search product -->
                     </div>
                     <div class="flex items-center px-3">
-                        <span class="text-2xl"><i class="fas fa-user"></i></span>
+                        @if(!auth()->check())
+                            <a href="{{ route('register') }}">
+                                <span class="text-2xl"><i class="fas fa-user"></i></span>
+                            </a>
+                        @else
+                            <span class="text-xl">Hi, {{auth()->user()->name}}</span>
+                        @endif
+
                         <a href="{{ route('cart.show') }}" class="text-2xl px-5 md:px-10">
                             <i class="fas fa-shopping-bag"></i>
                             <span class="text-lg">({{ session()->has('jellybearCart')? session()->get('jellybearCart')->totalQty : '0'}})</span>
                         </a>
+
+                        @if(auth()->check())
+                            <a href="{{ route('logout') }}">Log out</a>
+                        @endif
                     </div>
                 </div>
                 <div class="w-full h-14 bg-blue-light flex items-center justify-center">
@@ -82,5 +93,6 @@
     <script src="{{ asset('js/owl.carousel.min.js')}} "></script>
         <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+
 </body>
 </html>

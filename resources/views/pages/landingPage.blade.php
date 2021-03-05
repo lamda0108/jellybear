@@ -2,6 +2,7 @@
 
 @section('content')
 
+@include('layouts._message')
 
 <!-- superslides -->
 <section id="section-1" class="h-mainHeight w-full bg-yellow-default py-20">
