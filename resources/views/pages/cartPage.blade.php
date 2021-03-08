@@ -73,20 +73,23 @@
         <!--  table displays on small screen-->
         <div class="md:hidden text-sm">
             @foreach($cart->items as $item)
-                <div class="border-b-2 border-brown-default pb-1 px-10">
-                        <div class="flex items-center py-2">
+                <div class="border-b-2 border-brown-default pb-1 px-3">
+                        <div class="flex items-center py-3">
                             <img src="{{asset($item['image'])}}" class="w-24 rounded border-brown-default border-2" alt="">
-                            <h1 class="ml-3 tracking-wide">{{$item['name']}}</h1>
-                        </div>
-                        <div class="flex justify-around">
-                            <div class="flex items-center">
-                                <a href=""><i class="fas fa-plus-circle"></i></a>
-                                <h2 class="mx-2">{{$item['qty']}}</h2>
-                                <a href=""><i class="fas fa-minus-circle"></i></a>
+                            <div>
+                                <h1 class="ml-4 tracking-wide mb-2">{{$item['name']}}</h1>
+                                <div class="flex items-center ml-4">
+                                    <a href="{{ route('cart.minus', $item['id']) }}"><i class="fas fa-minus-circle"></i></a>
+                                    <h2 class="mx-2">{{$item['qty']}}</h2>
+                                    <a href="{{ route('cart.add', $item['id']) }}"><i class="fas fa-plus-circle"></i></a>
+                                </div>
                             </div>
-                            <h2>Item Price: ${{$item['price']}} USD</h2>
+                        </div>
+                        <div class="flex justify-around text-sm">
+        
+                            <h2>Price: ${{$item['price']}} USD</h2>
                             <h2>Total: ${{$item['qty'] * $item['price']}} USD</h2>
-                            <a href="" class="underline">
+                            <a href="{{ route('cart.remove', $item['id']) }}" class="underline">
                                 Remove
                             </a>
                         </div>

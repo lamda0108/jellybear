@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -53,7 +55,21 @@ class ProductController extends Controller
             'search' => 'required|min:2'
         ]);
 
-        $products = Product::where('slug', 'like', '%' . $request->search . '%')->get();
+        if($request->search == 'animals' || $request->search == 'animal' ){
+            $products = Category::where('slug', 'animals')->firstOrFail()->products;
+        }else if($request->search == 'book' || $request->search =='books'){
+            $products = Category::where('slug', 'books')->firstOrFail()->products;
+        }else if($request->search == 'amuseable' || $request->search =='amuseables'){
+            $products = Category::where('slug', 'amuseables')->firstOrFail()->products;
+        }else if($request->search == 'rabbit' || $request->search =='rabbits'){
+            $products = Product::where('slug', 'like', '%bunny%')->get();
+        }
+        else{
+            $products = Product::where('slug', 'like', '%' . $request->search . '%')
+            ->orWhere('slug', 'like', '%' . Str::singular($request->search) . '%')
+            ->get();
+        }
+  
         if(count($products)){
             return view('pages.searchResultPage')->with([
                 'products'=>$products

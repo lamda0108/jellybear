@@ -48,7 +48,7 @@
                 </button>
             </div>
             <div class="mt-5">
-                <a href="{{ route('login') }}" class="mt-3 text-brown-dark underline tracking-wide">Already have an account? Log in here</a>
+                <a href="{{ route('login') }}" class="text-brown-dark underline tracking-wide">Already have an account? Log in here</a>
             </div>
         </form>
                 </div>

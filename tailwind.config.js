@@ -39,13 +39,19 @@ module.exports = {
       },
       height: {
         mainHeight: 'calc(100vh - 7rem)' ,
+        fortyScreen: '40vh',
+        fiftyScreen: '50vh',
+        sixtyScreen: '60vh'
       },
       minHeight: {
         '3/4screen': '75vh'
       },
       width: {
         fortyScreen: '40vw',
-        seventyScreen: '70vw'
+        fiftyScreen: '50vw',
+        sixtyScreen: '60vw',
+        seventyScreen: '70vw',
+        eightyScreen: '80vw'
       },
       boxShadow: {
         whiteShadow: '8px 8px 0 rgb(255,255,255)'

@@ -15,9 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
+// userpage
+Route::get('/profile', [App\Http\Controllers\Auth\UserController::class, 'show'])->name('user.show');
 //logout
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
-
 Route::get('/', [App\Http\Controllers\LandingPageController::class, 'index'])->name('landingPage');
 // product url
 Route::get('/product/{slug}',[App\Http\Controllers\ProductController::class, 'show'] )->name('product.show');

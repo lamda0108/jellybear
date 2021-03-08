@@ -12,7 +12,7 @@
    <!-- end of results -->
 
    <!-- animals -->
-   <div class="w-full h-auto py-16 px-5 md:px-10 lg:px-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-10">
+   <div class="w-full h-auto pt-10 md:pt-16 pb-4 md:pb-8 px-5 md:px-10 lg:px-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-10 xl:gap-16">
        @foreach($category->products as $product)
             @include('layouts._singleProduct', ['product' => $product])
        @endforeach

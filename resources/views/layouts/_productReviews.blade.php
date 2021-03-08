@@ -1,4 +1,4 @@
-<div class="py-10 px-10">
+<div class="pt-10 pb-5 md:py-10 px-3 md:px-10">
     @foreach($product->reviews->reverse() as $review)
         <div class="pt-2 pb-5 border-t-2">
             <div class="flex flex-col md:flex-row">
@@ -16,7 +16,7 @@
                   <!-- end of review date -->
             </div>
             <!-- review body -->
-            <p class="mt-3">{{$review->body}}</p>
+            <p class="mt-3 text-sm md:text-base">{{$review->body}}</p>
             <!-- end of review body -->
         </div>
     @endforeach

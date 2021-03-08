@@ -7,14 +7,14 @@
 
 <div class="bg-yellow-light w-full h-auto flex flex-col justify-center">
     <!-- product info -->
-    <div class="w-full h-auto px-10 md:px-20 py-20 mx-auto flex items-center flex-col md:flex-row md:justify-around">
+    <div class="w-full h-auto px-10 md:px-20 pt-10 pb-6 md:pt-16 md:pb-10 lg:py-24 mx-auto flex items-center flex-col md:flex-row md:justify-around">
         <div class="w-3/4 sm:w-1/2 flex justify-center md:mr-20 w-auto h-auto md:w-auto md:h-auto">
-             <img src="{{asset($product->image)}}" class="w-full h-full border-brown-default border-2 rounded " alt="">
+             <img src="{{asset($product->image)}}" class="w-full h-full xl:w-4/5 xl:h-4/5 border-brown-default border-2 rounded " alt="">
         </div>
              
         <div class="w-full md:w-3/4 lg:w-1/2 flex flex-col justify-center items-center py-10 md:pr-10 lg:pr-20 lg:items-start">
-            <h1 class="text-brown-dark text-3xl md:text-xl lg:text-3xl tracking-widest mb-5 md:mb-2 lg:mb-5">{{$product->name}}</h1>
-            <h3 class="text-brown-dark tracking-wide text-2xl md:text-base lg:text-2xl mb-5 md:mb-2 lg:mb-5">${{$product->price}} USD</h3>
+            <h1 class="text-brown-dark text-2xl lg:text-3xl tracking-widest mb-5 md:mb-2 lg:mb-5">{{$product->name}}</h1>
+            <h3 class="text-brown-dark tracking-wide text-xl lg:text-2xl md:text-base lg:text-2xl mb-5 md:mb-2 lg:mb-5">${{$product->price}} USD</h3>
             <!-- reviews -->
             <div class="flex flex-col justify-center items-center lg:flex-row">   
                   <!-- review stars -->
@@ -45,11 +45,11 @@
 
    
     <!--------------- section reviews --------------->
-    <section class="pt-12 pb-2 bg-blue-light">
+    <section class="p-8 lg:p-16 bg-blue-light">
         <!-- review heading -->
         <div class="py-3 text-center">
-                <h1 class="text-4xl mb-2 tracking-wider">Reviews</h1>
-                <p class="mb-5 tracking-wide">Please leave a review on {{$product->name}}</p>
+                <h1 class="text-2xl md:text-4xl mb-2 tracking-wider">Reviews</h1>
+                <p class="mb-5 md:text-lg tracking-wide">Please leave a review on {{$product->name}}</p>
                 @if($product->reviews->count()>0)
                 <button class="text-brown-default bg-yellow-light shadow hover:bg-yellow-default hover:shadow-lg font-bold uppercase text-sm py-2 px-4 rounded outline-none focus:outline-none mr-1 mb-1" type="button" style="transition: all .15s ease" onclick="toggleModal('modal-id')">
                         write your review
@@ -68,10 +68,10 @@
     <!-------------- end of section reviews------------>
 
     <!----------------- section recommand ------------------>
-    <section class="py-12 bg-yellow-light">
+    <section class="py-6 md:py-12 bg-yellow-light">
         <!-- recommand heading -->
-        <div class="py-8 text-center">
-            <h1 class="text-4xl mb-2 tracking-wider">We Recommand</h1>
+        <div class="py-6 md:py-8 text-center">
+            <h1 class="text-2xl md:text-4xl mb-2 tracking-wider">We Recommand</h1>
         </div>
         <!-- end of recommand heading -->
 

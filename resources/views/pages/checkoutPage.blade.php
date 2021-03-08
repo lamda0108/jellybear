@@ -6,9 +6,9 @@
   box-sizing: border-box;
 
   height: 40px;
-  width:380px;
+  width:350px;
 
-  padding: 10px 12px;
+  padding: 10px 6px;
   margin: 10px auto;
 
   border: 1px solid transparent;
@@ -66,9 +66,10 @@
                 </div>
                 <input type="hidden" name="amount" value="{{$amount}}">
                 <!-- stripe payment -->
-                <label for="card-element">
+                <label class="text-brown-dark" for="card-element">
                     Credit or debit card
-                  </label>
+                </label>
+                <p class="my-2 md:mr-5 text-left text-brown-default">(Testing purpose: please enter 4242 4242 4242 4242 as card number, any future date and any number for cvc and zipcode.)</p>
                   <div id="card-element">
                     <!-- A Stripe Element will be inserted here. -->
                   </div>
@@ -76,24 +77,24 @@
                   <!-- Used to display form errors. -->
                   <div id="card-errors" role="alert"></div>
 
-                <button class="bg-brown-default hover:bg-orange-dark text-yellow-light py-2 px-4 mt-4 rounded shadow hover:shadow-md" type="submit">Submit Payment</button>
+                <button class="bg-brown-default hover:bg-orange-dark text-yellow-light py-2 px-4 mt-4 rounded shadow hover:shadow-md focus:outline-none" type="submit">Submit Payment</button>
                 <!-- end of stripe payment -->
             </form>
         </div>
         <!-- bag items -->
-        <div class="md:w-1/2 py-5 md:py-10 md:px-20 md:border-l-2 md:border-brown-default">
+        <div class="md:w-1/2 py-5 md:py-10 px-10 xl:px-20 md:border-l-2 md:border-brown-default">
             <h1 class="text-center mb-5 text-xl md:text-3xl text-brown-dark">Your Bag</h1>
             @foreach($cart->items as $item)
-            <div class="flex justify-start items-center border-b-2 border-brown-default py-5">
-                <div class="w-24 relative mr-5">
-                    <img src="{{asset($item['image'])}}" class="w-full border-brown-default border-2 rounded" alt="">
-                    <span class="absolute -top-2 -right-2 rounded-full px-3 py-1 bg-blue-light text-brown-dark">{{$item['qty']}}</span>
+                <div class="flex justify-start items-center border-b-2 border-brown-default py-5">
+                    <div class="w-24 relative mr-5">
+                        <img src="{{asset($item['image'])}}" class="w-full border-brown-default border-2 rounded" alt="">
+                        <span class="absolute -top-2 -right-2 rounded-full px-3 py-1 bg-blue-light text-brown-dark">{{$item['qty']}}</span>
+                    </div>
+                    <div>
+                        <h1>{{$item['name']}}</h1>
+                        <p> ${{$item['price'] * $item['qty']}} USD</p>
+                    </div>
                 </div>
-                <div>
-                    <h1>{{$item['name']}}</h1>
-                    <p> ${{$item['price'] * $item['qty']}} USD</p>
-                </div>
-            </div>
             @endforeach
         </div>
     @else

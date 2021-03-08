@@ -24,6 +24,7 @@ class CartController extends Controller
         $cart->add($product);
         session()->put('jellybearCart', $cart);
         session()->flash('success', 'Your item has been added to the cart');
+        session()->flash('added', 'Your item has been added to the cart');
         return redirect()->back();
     }
 
@@ -88,23 +89,36 @@ class CartController extends Controller
             'description'=>'test'
         ]);
         $chargeId = $charge['id'];
+        if(auth()->user()){
+            $userId = auth()->user()->id;
+        }else{
+            $userId = null;
+        }
         if($chargeId){
-           Order::create([
+           $newOrder = Order::create([
                 'name'=>$request->name,
                 'address'=>$request->address,
                 'city'=>$request->city,
                 'state'=>$request->state,
                 'zipcode'=>$request->zipcode,
                 'phone_number'=>$request->phone_number,
-               'cart'=>serialize(session()->get('jellybearCart'))
+                'cart'=>serialize(session()->get('jellybearCart')),
+                'user_id'=>$userId
            ]); 
+           $cart = unserialize($newOrder->cart);
            session()->forget('jellybearCart');
-
-           return redirect()->to('/')->with([
-               'success' => 'You have already checked out'
+           return view('pages.orderPage')->with([
+                'name'=>$newOrder->name,
+                'address'=>$newOrder->address,
+                'city'=>$newOrder->city,
+                'state'=>$newOrder->state,
+                'phone'=>$newOrder->phone_number,
+                'zipcode'=>$newOrder->zipcode,
+                'cart'=>$cart
            ]);
         }else{
             return redirect()->back();
         }
     }
+
 }
